@@ -1,5 +1,14 @@
 initBatteery()
 
+function timeUpdate() {
+	let time = new Date().toLocaleTimeString()
+	let date = new Date().toDateString()
+	let time_element = document.querySelector('.time')
+	time_element.innerHTML = `<span>${time}</span><br/>${date}`
+}
+
+setInterval(timeUpdate, 1000)
+
 function initBatteery() {
 	const batteeryLiquid = document.querySelector('.battery__liquid'),
 		batteryStatus = document.querySelector('.battery__status'),
