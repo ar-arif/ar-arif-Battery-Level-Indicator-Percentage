@@ -169,6 +169,11 @@ body {
 	font-weight: 800;
 }
 
+i.ri-flashlight-line{
+	position: fixed;
+	margin-left: 10%;
+}
+
 @keyframes animated-charging-battery{
 	0%{
 		text-shadow: none;

@@ -1,5 +1,31 @@
 initBatteery()
 
+let charging_text = "Charging";
+let charging_text_index = 0;
+var charging_interval_id;
+function chargingTextAnimation(batteryStatus) {
+
+	if (charging_text_index == 0) {
+		charging_text = "Charging"
+		charging_text_index++
+	}
+	else if (charging_text_index == 1) {
+		charging_text = "Charging."
+		charging_text_index++
+	}
+	else if (charging_text_index == 2) {
+		charging_text = "Charging.."
+		charging_text_index++
+	}
+	else if (charging_text_index >= 3) {
+		charging_text = "Charging..."
+		charging_text_index = 0
+	}
+
+	batteryStatus.innerHTML = `${charging_text} <i class="ri-flashlight-line animated-green"></i>`;
+
+}
+
 function timeUpdate() {
 	let time = new Date().toLocaleTimeString()
 	let date = new Date().toDateString()
@@ -28,7 +54,11 @@ function initBatteery() {
 				batteryStatus.innerHTML = `Low batterey <i class="ri-plug-line animated-red"></i>`;
 			}
 			else if (batt.charging) {
-				batteryStatus.innerHTML = `Charging... <i class="ri-flashlight-line animated-green"></i>`;
+				charging_interval_id = setInterval(() => chargingTextAnimation(batteryStatus), 1000);
+			}
+			else if (!batt.charging) {
+				clearInterval(charging_interval_id);
+				batteryStatus.innerHTML = '';
 			}
 			else {
 				batteryStatus.innerHTML = '';
