@@ -54,6 +54,7 @@ function initBatteery() {
 				batteryStatus.innerHTML = `Low batterey <i class="ri-plug-line animated-red"></i>`;
 			}
 			else if (batt.charging) {
+				clearInterval(charging_interval_id);
 				charging_interval_id = setInterval(() => chargingTextAnimation(batteryStatus), 1000);
 			}
 			else if (!batt.charging) {
